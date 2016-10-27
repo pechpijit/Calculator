@@ -6,22 +6,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     String TAG = "MainActivity";
     String subText = "";
     String txtValue = "";
-    String txt = "";
+    String value1 = "";
+    TextView main,sub;
+    int mode = 0;
+    String temp;
+    boolean ass = false;
 
-    TextView main, sub;
-    double[] value = new double[2];
-
-    double value1 = 0;
-    int index = 0;
-    int m1 = 0;
-    int m2 = 0;
-    int m3 = 0;
-    int m4 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,122 +53,179 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn0:
-                subText += "1";
-                txtValue += "1";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "0";
+                    txtValue += "0";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn1:
-                subText += "1";
-                txtValue += "1";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "1";
+                    txtValue += "1";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn2:
-                subText += "2";
-                txtValue += "2";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "2";
+                    txtValue += "2";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn3:
-                subText += "3";
-                txtValue += "3";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "3";
+                    txtValue += "3";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn4:
-                subText += "4";
-                txtValue += "4";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "4";
+                    txtValue += "4";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn5:
-                subText += "5";
-                txtValue += "5";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "5";
+                    txtValue += "5";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn6:
-                subText += "6";
-                txtValue += "6";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "6";
+                    txtValue += "6";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn7:
-                subText += "7";
-                txtValue += "7";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "7";
+                    txtValue += "7";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn8:
-                subText += "8";
-                txtValue += "8";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "8";
+                    txtValue += "8";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btn9:
-                subText += "9";
-                txtValue += "9";
-                sub.setText(subText);
+                if (!ass) {
+                    subText += "9";
+                    txtValue += "9";
+                    sub.setText(subText);
+                }
                 break;
             case R.id.btnA:
-                if (m2 == 1 || m3 == 1 || m4 == 1) {
-                    m2 = m3 = m4 = 0;
-                    m1 = 1;
-                    sub.setText(subText.substring(0,subText.indexOf(" "))+" + ");
-                } else {
-                    if (m1 == 1) {
+                if (!ass) {
+                    if (!txtValue.isEmpty()) {
+                        if (mode > 0) {
 
-                    } else {
-                        if (index < 1) {
-                            value1 = Double.parseDouble(txtValue);
-                            subText += " + ";
-                            m1 = 1;
-                            sub.setText(subText);
-                            txtValue = "";
-                            index++;
                         } else {
-                            value1 = value1 + Double.parseDouble(txtValue);
-                            String temp = String.valueOf(value1);
-                            subText = temp.substring(0,temp.indexOf(".")) + " + ";
-                            sub.setText(subText);
+                            value1 = txtValue;
                             txtValue = "";
+                            subText += " + ";
+                            sub.setText(subText);
+                            mode = 1;
                         }
                     }
-
                 }
-
                 break;
             case R.id.btnS:
-                if (index < 1) {
-                    value1 = Double.parseDouble(txtValue);
-                    subText += " - ";
-                    sub.setText(subText);
-                    txtValue = "";
-                    index++;
-                    m2 = 1;
-                } else {
-                    value1 = value1 - Double.parseDouble(txtValue);
-                    String temp = String.valueOf(value1);
-                    subText = temp.substring(0,temp.indexOf(".")) + " - ";
-                    if (subText.equals("0 + ")) {
-                        value1 = 0;
-                        index = 0;
-                        subText = "";
-                        txtValue = "";
-                        sub.setText("0");
-                    } else {
-                        sub.setText(subText);
+                if (!ass) {
+                    if (!txtValue.isEmpty()) {
+                        if (mode > 0) {
+
+                        } else {
+                            value1 = txtValue;
+                            txtValue = "";
+                            subText += " - ";
+                            sub.setText(subText);
+                            mode = 2;
+                        }
                     }
-                    txtValue = "";
                 }
                 break;
             case R.id.btnM:
+                if (!ass) {
+                    if (!txtValue.isEmpty()) {
+                        if (mode > 0) {
+
+                        } else {
+                            value1 = txtValue;
+                            txtValue = "";
+                            subText += " * ";
+                            sub.setText(subText);
+                            mode = 3;
+                        }
+                    }
+                }
                 break;
             case R.id.btnD:
+                if (!ass) {
+                    if (!txtValue.isEmpty()) {
+                        if (mode > 0) {
+
+                        } else {
+                            value1 = txtValue;
+                            txtValue = "";
+                            subText += " /  ";
+                            sub.setText(subText);
+                            mode = 4;
+                        }
+                    }
+                }
                 break;
             case R.id.btnAss:
+                if (!ass) {
+                    ass = true;
+                    switch (mode) {
+                        case 1:
+                            temp = String.valueOf(Double.parseDouble(value1) + Double.parseDouble(txtValue));
+                            main.setText(subText + " = ");
+                            sub.setText(temp.substring(0, temp.indexOf(".")));
+                            break;
+                        case 2:
+                            temp = String.valueOf(Double.parseDouble(value1) - Double.parseDouble(txtValue));
+                            main.setText(subText + " = ");
+                            sub.setText(temp.substring(0, temp.indexOf(".")));
+                            break;
+                        case 3:
+                            temp = String.valueOf(Double.parseDouble(value1) * Double.parseDouble(txtValue));
+                            main.setText(subText + " = ");
+                            sub.setText(temp.substring(0, temp.indexOf(".")));
+                            break;
+                        case 4:
+                            temp = String.valueOf(Double.parseDouble(value1) / Double.parseDouble(txtValue));
+                            main.setText(subText + " = ");
+                            sub.setText(temp.substring(0, temp.indexOf(".")));
+                            break;
+                    }
+                }
                 break;
             case R.id.btnC:
-                value1 = 0;
-                index = 0;
-                subText = "";
+                value1 = "";
                 txtValue = "";
+                subText = "";
+                main.setText("");
                 sub.setText("0");
+                mode = 0;
+                ass = false;
                 break;
             case R.id.btnDo:
+                if (txtValue.lastIndexOf(".") == -1) {
+                    subText += ".";
+                    txtValue += ".";
+                    sub.setText(subText);
+                }
                 break;
         }
+        Log.d(TAG, "value1 : " + value1 + " ,txtValue : " + txtValue + " ,subText : " + subText);
     }
 }
